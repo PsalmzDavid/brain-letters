@@ -1,0 +1,5201 @@
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #080D1D;
+  color: #F5F7FF;
+  font-family: Inter, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =====================================
+   MAIN GAME CONTAINER
+===================================== */
+
+.game-container {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 25px clamp(15px, 3.2vw, 35px);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      #17234B 0%,
+      transparent 55%
+    ),
+    #080D1D;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #263253;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #7554F7, #168DFF);
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.brand h1 {
+  font-size: 19px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.brand p {
+  color: #91A2C8;
+  font-size: 11px;
+  margin: 5px 0 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.coin-display {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #172343;
+  border: 1px solid #34456D;
+  padding: 9px 13px;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+
+.coin-display strong {
+  color: #F8D77B;
+}
+
+.coin-display button {
+  background: #7554F7;
+  border: none;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+/* =====================================
+   HAMBURGER MENU
+===================================== */
+
+.menu-container {
+  position: relative;
+  z-index: 100;
+}
+
+.menu-toggle {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: #172343;
+  border: 1px solid #34456D;
+  border-radius: 12px;
+  transition: 0.25s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle.menu-active {
+  background: #26365F;
+  border-color: #8B75FF;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: #F5F7FF;
+  border-radius: 5px;
+  transition: 0.25s ease;
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 205px;
+  padding: 8px;
+  background: #111B35;
+  border: 1px solid #34456D;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  animation: menuAppear 0.2s ease;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 9px;
+  color: #C4CDE5;
+  font-size: 14px;
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.menu-item > span:first-child {
+  width: 23px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.menu-item:hover {
+  background: #202D50;
+  color: #FFFFFF;
+}
+
+.menu-item.active {
+  background: #28264F;
+  color: #B6A5FF;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   GAME CONTENT
+===================================== */
+
+.game-content {
+  width: 100%;
+  max-width: 620px;
+  margin: clamp(25px, 4vw, 35px) auto;
+  text-align: center;
+}
+
+.level-tag {
+  display: inline-block;
+  color: #FFFFFF;
+  border: 1.5px solid #24C8FF;
+  background: transparent;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.level-heading h2 {
+  font-size: clamp(21px, 3vw, 27px);
+  margin: 12px 0 8px;
+}
+
+.level-heading p {
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+/* =====================================
+   PROGRESS
+===================================== */
+
+.progress-area {
+  margin: 30px 0;
+  text-align: left;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #AAB9DA;
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  height: 7px;
+  background: #202D4A;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #815AFF, #28B9FF);
+  transition: width 0.4s ease;
+}
+
+/* =====================================
+   PUZZLE BOARD
+===================================== */
+
+.puzzle-board {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.board-heading {
+  display: none;
+}
+
+.crossword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(4px, 1.5vw, 6px);
+  width: 100%;
+}
+
+.word-row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(4px, 1.5vw, 6px);
+  max-width: 100%;
+}
+
+.puzzle-cell {
+  width: clamp(32px, 9.5vw, 43px);
+  height: clamp(32px, 9.5vw, 43px);
+  flex-shrink: 0;
+  border: 1px solid #52638D;
+  border-radius: 7px;
+  background: #202E50;
+  display: grid;
+  place-items: center;
+  color: #FFFFFF;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: bold;
+}
+
+/* =====================================
+   DIVIDER
+===================================== */
+
+.puzzle-wheel-divider {
+  width: min(180px, 55%);
+  height: 2px;
+  margin: 32px auto 20px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #7554F7,
+    #28B9FF,
+    #7554F7,
+    transparent
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(117, 84, 247, 0.45);
+}
+
+/* =====================================
+   WHEEL AND CONTROLS LAYOUT
+===================================== */
+
+.wheel-controls-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 250px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(4px, 2vw, 16px);
+  width: 100%;
+  min-height: 250px;
+  margin: 30px auto 15px;
+}
+
+/* =====================================
+   LETTER WHEEL
+===================================== */
+
+.letter-wheel {
+  position: relative;
+  grid-column: 2;
+  width: 250px;
+  height: 230px;
+  margin: 5px 0 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* =====================================
+   CONNECTING LINE
+===================================== */
+
+.connecting-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* =====================================
+   LETTER BUTTONS
+===================================== */
+
+.letter-button {
+  position: absolute;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  border: 1px solid #6574BC;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #7655F4, #315FD5);
+  box-shadow: 0 5px 18px #0008;
+  color: white;
+  font-size: 23px;
+  font-weight: bold;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.letter-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #795BFF;
+}
+
+.letter-button.selected {
+  background: linear-gradient(145deg, #24C8FF, #7554F7);
+  border: 2px solid #FFFFFF;
+  transform: scale(1.12);
+  box-shadow:
+    0 0 12px #24C8FF,
+    0 0 22px #398DFF,
+    0 0 30px rgba(117, 84, 247, 0.5);
+}
+
+/* =====================================
+   HINT AND SHUFFLE CONTROLS
+===================================== */
+
+.side-controls {
+  display: contents;
+}
+
+.hint-button,
+.shuffle-button {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 25px;
+  box-shadow: none;
+  transition: transform 0.2s, background 0.2s;
+  align-self: center;
+  transform: translateY(45px);
+}
+
+.hint-button {
+  grid-column: 1;
+}
+
+.shuffle-button {
+  grid-column: 3;
+}
+
+.hint-button:hover,
+.shuffle-button:hover {
+  background: rgba(117, 84, 247, 0.15);
+  transform: translateY(45px) scale(1.12);
+}
+
+/* COIN COST ON THE HINT ICON */
+
+.hint-icon {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.hint-cost {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #FFD76A;
+  background: #202B46;
+  border-radius: 10px;
+  padding: 2px 3px;
+  line-height: 1;
+}
+
+/* =====================================
+   GAME MESSAGE
+===================================== */
+
+.game-message {
+  min-height: 24px;
+  color: #FFFFFF;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+/* =====================================
+   TABLETS
+===================================== */
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 22px 20px;
+  }
+
+  .game-content {
+    max-width: 580px;
+  }
+
+  .top-bar {
+    padding-bottom: 20px;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand h1 {
+    font-size: 17px;
+  }
+}
+
+/* =====================================
+   MOBILE PHONES
+===================================== */
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 16px 12px;
+  }
+
+  .top-bar {
+    gap: 8px;
+    padding-bottom: 17px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+
+  .brand h1 {
+    font-size: 14px;
+    letter-spacing: 1.3px;
+  }
+
+  .brand p {
+    font-size: 9px;
+  }
+
+  .header-actions {
+    gap: 7px;
+  }
+
+  .coin-display {
+    gap: 6px;
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .menu-panel {
+    width: 190px;
+  }
+
+  .game-content {
+    margin: 25px auto;
+  }
+
+  .level-heading h2 {
+    font-size: 22px;
+  }
+
+  .level-heading p {
+    font-size: 12px;
+  }
+
+  .progress-area {
+    margin: 24px 0;
+  }
+
+  .puzzle-wheel-divider {
+    margin: 25px auto 15px;
+  }
+
+  .wheel-controls-layout {
+    grid-template-columns: 44px 212px 44px;
+    gap: 3px;
+    min-height: 230px;
+    margin: 20px auto 12px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 42px;
+    height: 42px;
+    font-size: 23px;
+    transform: translateY(40px);
+  }
+
+  .hint-button:hover,
+  .shuffle-button:hover {
+    transform: translateY(40px) scale(1.08);
+  }
+
+  .hint-icon {
+    font-size: 23px;
+  }
+
+  .hint-cost {
+    font-size: 9px;
+    top: 4px;
+    right: 2px;
+  }
+}
+
+/* =====================================
+   EXTRA SMALL PHONES
+===================================== */
+
+@media (max-width: 390px) {
+  .game-container {
+    padding: 14px 10px;
+  }
+
+  .brand h1 {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .brand p {
+    font-size: 8px;
+  }
+
+  .coin-display {
+    padding: 6px 8px;
+    gap: 5px;
+    font-size: 11px;
+  }
+
+  .menu-toggle {
+    width: 35px;
+    height: 35px;
+  }
+
+  .wheel-controls-layout {
+    grid-template-columns: 40px 180px 40px;
+    gap: 2px;
+    min-height: 210px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.72);
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 38px;
+    height: 38px;
+    font-size: 21px;
+    transform: translateY(15px);
+  }
+
+  .hint-button:hover,
+  .shuffle-button:hover {
+    transform: translateY(35px) scale(1.08);
+  }
+
+  .puzzle-cell {
+    border-radius: 6px;
+  }
+}
+
+/* =====================================
+   SHORT LANDSCAPE SCREENS
+===================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .game-container {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .top-bar {
+    padding-bottom: 12px;
+  }
+
+  .game-content {
+    margin-top: 15px;
+  }
+
+  .progress-area {
+    margin: 15px 0;
+  }
+
+  .puzzle-wheel-divider {
+    margin: 15px auto 10px;
+  }
+
+  .wheel-controls-layout {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+/* =====================================
+   FINAL RESPONSIVE PAGE ALIGNMENT
+===================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px clamp(12px, 3vw, 35px);
+}
+
+/* Keep header properly aligned */
+
+.top-bar {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Centre the main game content */
+
+.game-content {
+  width: 100%;
+  max-width: 620px;
+  flex: 1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep all game sections centred */
+
+.level-heading,
+.progress-area,
+.puzzle-board,
+.puzzle-wheel-divider,
+.game-message {
+  width: 100%;
+}
+
+.level-heading {
+  text-align: center;
+}
+
+/* =====================================
+   CENTRED LETTER WHEEL
+===================================== */
+
+.wheel-controls-layout {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  min-height: 250px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Keep wheel at the centre */
+
+.letter-wheel {
+  position: relative;
+  flex: 0 0 250px;
+  width: 250px;
+  height: 230px;
+  margin: 0;
+  transform: none;
+}
+
+/* Hint and shuffle on opposite sides */
+
+.side-controls {
+  display: contents;
+}
+
+.hint-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(15px);
+}
+
+.shuffle-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(15px);
+}
+
+.hint-button:hover,
+.shuffle-button:hover {
+  transform: translateY(15px) scale(1.1);
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+
+@media (max-width: 480px) {
+
+  .game-container {
+    padding: 15px 10px;
+  }
+
+  .game-content {
+    max-width: 100%;
+  }
+
+  .wheel-controls-layout {
+    width: 100%;
+    max-width: 340px;
+    min-height: 220px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+
+  .hint-button {
+    left: 0;
+    top: 50%;
+    transform: translateY(10px);
+  }
+
+  .shuffle-button {
+    right: 0;
+    top: 50%;
+    transform: translateY(10px);
+  }
+
+  .hint-button:hover,
+  .shuffle-button:hover {
+    transform: translateY(10px) scale(1.08);
+  }
+}
+
+/* =====================================
+   EXTRA SMALL PHONES
+===================================== */
+
+@media (max-width: 360px) {
+
+  .game-container {
+    padding: 12px 8px;
+  }
+
+  .wheel-controls-layout {
+    max-width: 310px;
+    min-height: 200px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.72);
+  }
+
+  .puzzle-cell {
+    width: clamp(28px, 8.5vw, 32px);
+    height: clamp(28px, 8.5vw, 32px);
+  }
+
+  .word-row {
+    gap: 4px;
+  }
+
+  .crossword {
+    gap: 4px;
+  }
+}
+
+/* EXTRA WORDS */
+
+.extra-words-area {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 5;
+}
+
+.extra-words-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17223B;
+  border: 1px solid rgba(130, 150, 255, 0.2);
+  border-radius: 12px;
+  font-size: 23px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.extra-words-button:hover {
+  background: #243454;
+  transform: translateY(-2px);
+}
+
+.extra-words-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8855FF;
+  color: #FFFFFF;
+  border: 2px solid #080D1D;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.extra-words-panel {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  width: 220px;
+  padding: 15px;
+  background: #131E35;
+  border: 1px solid rgba(130, 150, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.extra-words-panel h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #F5F7FF;
+}
+
+.extra-words-panel p {
+  margin: 0;
+  font-size: 12px;
+  color: #9CAAC5;
+}
+
+.extra-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.extra-words-list span {
+  padding: 6px 9px;
+  background: #202F50;
+  border-radius: 7px;
+  color: #65D9FF;
+  font-size: 12px;
+  font-weight: 700;
+}
+/* =====================================
+   UPDATED LETTER WHEEL AND CONTROLS
+===================================== */
+
+.wheel-controls-layout {
+  width: 100%;
+  max-width: 410px;
+  min-height: 290px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.letter-wheel {
+  position: relative;
+  width: 290px;
+  height: 270px;
+  flex: 0 0 290px;
+  margin: 0;
+  transform: none;
+  touch-action: none;
+}
+
+/* Larger circular letter buttons */
+
+.letter-button {
+  width: 68px;
+  height: 68px;
+  font-size: 27px;
+  border-radius: 50%;
+}
+
+/* Reposition letters to fit the larger wheel */
+
+.letter-0 {
+  top: 5px;
+  left: 111px;
+}
+
+.letter-1 {
+  top: 75px;
+  right: 8px;
+}
+
+.letter-2 {
+  bottom: 8px;
+  right: 48px;
+}
+
+.letter-3 {
+  bottom: 8px;
+  left: 48px;
+}
+
+.letter-4 {
+  top: 75px;
+  left: 8px;
+}
+
+/* Larger Hint and Shuffle buttons */
+
+.hint-button,
+.shuffle-button {
+  width: 60px;
+  height: 60px;
+  font-size: 32px;
+  border-radius: 50%;
+  z-index: 5;
+  background: rgba(117, 84, 247, 0.10);
+  border: 1px solid rgba(130, 150, 255, 0.2);
+}
+
+.hint-button {
+  left: 0;
+  top: 50%;
+  transform: translateY(15px);
+}
+
+.shuffle-button {
+  right: 0;
+  top: 50%;
+  transform: translateY(15px);
+}
+
+.hint-button:hover,
+.shuffle-button:hover {
+  transform: translateY(15px) scale(1.1);
+  background: rgba(117, 84, 247, 0.22);
+}
+
+/* Hint icon and coin cost */
+
+.hint-icon {
+  font-size: 30px;
+}
+
+.hint-cost {
+  top: 3px;
+  right: 0;
+  font-size: 11px;
+  padding: 3px 4px;
+}
+
+/* Connecting line layer */
+
+.connecting-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Keep selected letters above the connecting line */
+
+.letter-button {
+  z-index: 2;
+}
+
+/* =====================================
+   MOBILE SIZING
+===================================== */
+
+@media (max-width: 480px) {
+  .wheel-controls-layout {
+    max-width: 370px;
+    min-height: 270px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.88);
+    transform-origin: center center;
+  }
+
+  .letter-button {
+    width: 68px;
+    height: 68px;
+    font-size: 26px;
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 50px;
+    height: 50px;
+    font-size: 27px;
+  }
+
+  .hint-icon {
+    font-size: 26px;
+  }
+
+  .hint-cost {
+    font-size: 9px;
+  }
+}
+
+/* =====================================
+   EXTRA SMALL PHONES
+===================================== */
+
+@media (max-width: 360px) {
+  .wheel-controls-layout {
+    max-width: 330px;
+    min-height: 245px;
+  }
+
+  .letter-wheel {
+    transform: scale(0.78);
+    transform-origin: center center;
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+}
+
+/* =====================================
+   EXTRA WORDS ICON AND PANEL
+===================================== */
+
+.extra-words-area {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 10;
+}
+
+.extra-words-button {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17223B;
+  border: 1px solid rgba(130, 150, 255, 0.2);
+  border-radius: 12px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.extra-words-button:hover {
+  background: #243454;
+  transform: translateY(-2px);
+}
+
+.extra-words-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8855FF;
+  color: #FFFFFF;
+  border: 2px solid #080D1D;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.extra-words-panel {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 220px;
+  padding: 15px;
+  background: #131E35;
+  border: 1px solid rgba(130, 150, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.extra-words-panel h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #F5F7FF;
+}
+
+.extra-words-panel p {
+  margin: 0;
+  font-size: 12px;
+  color: #9CAAC5;
+}
+
+.extra-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.extra-words-list span {
+  padding: 6px 9px;
+  background: #202F50;
+  border-radius: 7px;
+  color: #65D9FF;
+  font-size: 12px;
+  font-weight: 700;
+}
+.wheel-controls-layout {
+  transform: translateY(-70px);
+}
+.game-message {
+  margin-top: -80px;
+}
+.connecting-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.letter-button {
+  position: absolute;
+  z-index: 2;
+  touch-action: none;
+}
+.next-level-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.next-level-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 13px 28px;
+  border: 1px solid #24C8FF;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #167BCB, #6545D9);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.next-level-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.next-level-button span {
+  font-size: 18px;
+}
+
+/* =====================================
+   LIVE WORD PREVIEW
+===================================== */
+
+.wheel-controls-layout {
+  position: relative;
+}
+
+.live-word-preview {
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  transform: translateX(-50%);
+  min-height: 38px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.live-word-preview span {
+  color: #FFFFFF;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-align: center;
+  text-shadow:
+    0 0 8px rgba(36, 200, 255, 0.65),
+    0 0 18px rgba(136, 85, 255, 0.4);
+  animation: wordPreviewIn 0.12s ease-out;
+}
+
+@keyframes wordPreviewIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.live-word-preview {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.letter-button {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  user-select: none;
+}
+
+/* =====================================
+   FINAL LETTER WHEEL POSITIONING FIX
+===================================== */
+
+/* Keep the wheel itself stationary */
+.letter-wheel {
+  position: relative;
+  flex: 0 0 290px;
+  width: 290px;
+  height: 270px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transform: none;
+}
+
+/* Keep every letter centred on its calculated position */
+.letter-button {
+  position: absolute;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+
+  /* Essential: preserve the centre positioning */
+  transform: translate(-50%, -50%);
+
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  /* Prevent position animations while swiping */
+  transition:
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Hover must preserve the centring transform */
+.letter-button:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 20px #795BFF;
+}
+
+/* Selected letters must also preserve the centring transform */
+.letter-button.selected {
+  transform: translate(-50%, -50%) scale(1.10);
+
+  background: linear-gradient(145deg, #24C8FF, #7554F7);
+  border: 2px solid #FFFFFF;
+
+  box-shadow:
+    0 0 12px #24C8FF,
+    0 0 22px #398DFF,
+    0 0 30px rgba(117, 84, 247, 0.5);
+}
+
+/* Keep the connecting line fixed over the wheel */
+.connecting-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Keep the wheel layout stable */
+.wheel-controls-layout {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-70px);
+}
+
+/* Keep the live word preview independent of the wheel */
+.live-word-preview {
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Keep the game message in its current position */
+.game-message {
+  margin-top: -80px;
+}
+
+/* =====================================
+   MOBILE WHEEL POSITIONING
+===================================== */
+
+@media (max-width: 480px) {
+  .letter-wheel {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+
+  .letter-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .letter-button:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  .letter-button.selected {
+    transform: translate(-50%, -50%) scale(1.10);
+  }
+}
+
+@media (max-width: 360px) {
+  .letter-wheel {
+    transform: scale(0.78);
+    transform-origin: center center;
+  }
+}
+
+/* =====================================
+   WHEEL AND CONTROLS SIZE & POSITION
+===================================== */
+
+/* Move the complete arrangement down */
+.wheel-controls-layout {
+  transform: translateY(-45px);
+  margin-bottom: 20px;
+}
+
+/* Make the circular letter wheel slightly bigger */
+.letter-wheel {
+  width: 310px;
+  height: 290px;
+  flex: 0 0 310px;
+}
+
+/* Make the letters slightly bigger */
+.letter-button {
+  width: 62px;
+  height: 62px;
+  font-size: 29px;
+}
+
+/* Keep the selected letters centred */
+.letter-button:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.letter-button.selected {
+  transform: translate(-50%, -50%) scale(1.10);
+}
+
+/* Make Hint and Shuffle slightly bigger */
+.hint-button,
+.shuffle-button {
+  width: 64px;
+  height: 64px;
+  font-size: 34px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .wheel-controls-layout {
+    transform: translateY(-45px);
+  }
+
+  .letter-wheel {
+    transform: scale(0.88);
+    transform-origin: center center;
+  }
+
+  .letter-button {
+    width: 62px;
+    height: 62px;
+    font-size: 27px;
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 54px;
+    height: 54px;
+    font-size: 29px;
+  }
+}
+
+@media (max-width: 360px) {
+  .letter-wheel {
+    transform: scale(0.80);
+  }
+
+  .hint-button,
+  .shuffle-button {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* =====================================
+   BRAIN LETTERS - LEVEL SELECTOR
+===================================== */
+
+.level-heading {
+  position: relative;
+}
+
+.levels-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 12px auto 0;
+  padding: 9px 16px;
+  color: #F5F7FF;
+  background: #151E38;
+  border: 1px solid #34466F;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.levels-toggle:hover {
+  background: #202D50;
+  border-color: #42D9FF;
+}
+
+.levels-panel {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(340px, 92vw);
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 18px;
+  background: #111A31;
+  border: 1px solid #34466F;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.levels-panel h3 {
+  margin: 0 0 15px;
+  color: #F5F7FF;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+}
+
+.level-option {
+  position: relative;
+  min-height: 43px;
+  color: #DCE5FF;
+  background: #1B2948;
+  border: 1px solid #34466F;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.level-option:hover {
+  background: #293B65;
+  border-color: #42D9FF;
+  transform: translateY(-2px);
+}
+
+.level-option.current-level {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border-color: #42D9FF;
+}
+
+.level-option.completed-level {
+  border-color: #36CFA0;
+}
+
+.level-check {
+  position: absolute;
+  top: -6px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #061B19;
+  background: #36CFA0;
+  border-radius: 50%;
+  font-size: 10px;
+}
+
+@media (max-width: 480px) {
+  .levels-panel {
+    width: min(320px, 92vw);
+  }
+
+  .levels-grid {
+    gap: 7px;
+  }
+
+  .level-option {
+    min-height: 39px;
+    font-size: 13px;
+  }
+}
+/* MAIN LEVEL SELECTOR */
+
+.level-heading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.levels-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-width: 150px;
+  padding: 12px 20px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.levels-toggle:hover {
+  background: linear-gradient(135deg, #347FE8, #8958F0);
+  box-shadow: 0 0 16px rgba(66, 217, 255, 0.2);
+}
+
+.level-dropdown-arrow {
+  font-size: 10px;
+}
+/* =====================================
+   SEQUENTIAL DAILY WORD PUZZLE
+===================================== */
+
+.daily-word-number {
+  width: fit-content;
+  margin: 20px auto 12px;
+  padding: 9px 20px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.daily-clue-card {
+  width: 100%;
+  max-width: 520px;
+  margin: 15px auto 20px;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(145deg, #182747, #111B35);
+  border: 1px solid #34466F;
+  border-radius: 14px;
+}
+
+.daily-clue-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #42D9FF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.daily-clue-card p {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.daily-answer-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 25px auto;
+  min-height: 55px;
+}
+
+.daily-answer-area .puzzle-cell {
+  flex-shrink: 0;
+}
+
+.daily-solved-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.daily-solved-words h4 {
+  flex-basis: 100%;
+  margin: 0 0 8px;
+  color: #AAB9DA;
+  font-size: 12px;
+}
+
+.daily-solved-words span {
+  padding: 8px 13px;
+  color: #FFFFFF;
+  background: #24375E;
+  border: 1px solid #42D9FF;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.daily-challenge-screen .letter-wheel {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 480px) {
+  .daily-clue-card {
+    padding: 16px;
+  }
+
+  .daily-clue-card p {
+    font-size: 13px;
+  }
+
+  .daily-answer-area {
+    gap: 5px;
+  }
+}
+
+/* =====================================
+   BRAIN LETTERS - REWARD CENTRE
+===================================== */
+
+.rewards-screen {
+  max-width: 650px;
+  padding-bottom: 35px;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.rewards-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.rewards-eyebrow {
+  display: inline-block;
+  color: #8DABFF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.rewards-heading h2 {
+  margin: 0;
+  font-size: clamp(25px, 4vw, 32px);
+  color: #FFFFFF;
+}
+
+.rewards-heading p {
+  color: #AAB9DA;
+  font-size: 13px;
+  margin: 9px 0 0;
+}
+
+/* COIN BALANCE */
+
+.rewards-coin-card {
+  width: 100%;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #43568B;
+  border-radius: 17px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(117, 84, 247, 0.28), transparent 65%),
+    #121E3B;
+  text-align: center;
+}
+
+.rewards-coin-icon {
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.rewards-small-label {
+  color: #AAB9DA;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.rewards-coin-card > strong {
+  margin: 8px 0;
+  color: #FFD978;
+  font-size: clamp(35px, 7vw, 48px);
+  font-weight: 900;
+}
+
+.rewards-coin-card p {
+  margin: 0;
+  color: #AAB9DA;
+  font-size: 12px;
+}
+
+/* REWARD SECTIONS */
+
+.rewards-section {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.rewards-section > h3,
+.rewards-section-heading h3 {
+  margin: 0;
+  color: #EAF0FF;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.rewards-opportunities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.reward-opportunity-card {
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px 13px;
+  background: #121D37;
+  border: 1px solid #2D3D64;
+  border-radius: 13px;
+}
+
+.reward-card-icon {
+  flex-shrink: 0;
+  font-size: 25px;
+}
+
+.reward-card-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.reward-card-details h4 {
+  margin: 2px 0 6px;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.reward-card-details p {
+  margin: 0 0 9px;
+  color: #AAB9DA;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.reward-card-details > strong {
+  color: #FFD978;
+  font-size: 14px;
+}
+
+.reward-status {
+  margin-top: 9px;
+  color: #8DA6D8;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.reward-status.claimed {
+  color: #53DDB0;
+}
+
+/* ACHIEVEMENTS */
+
+.rewards-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.rewards-section-heading > span {
+  color: #8DA6D8;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.achievement-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 15px 12px;
+  background: #111B33;
+  border: 1px solid #293858;
+  border-radius: 12px;
+  opacity: 0.78;
+}
+
+.achievement-card.achievement-unlocked {
+  background: #172A3E;
+  border-color: #2F9D87;
+  opacity: 1;
+}
+
+.achievement-icon {
+  flex-shrink: 0;
+  font-size: 25px;
+}
+
+.achievement-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.achievement-info h4 {
+  margin: 2px 0 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.achievement-info p {
+  min-height: 30px;
+  margin: 0 0 10px;
+  color: #AAB9DA;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.achievement-progress-track {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  background: #293653;
+  border-radius: 10px;
+}
+
+.achievement-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7554F7, #24C8FF);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.achievement-unlocked .achievement-progress-fill {
+  background: linear-gradient(90deg, #24B98D, #62E6B9);
+}
+
+.achievement-progress-text {
+  display: block;
+  margin-top: 7px;
+  color: #8FA9D7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+.achievement-unlocked .achievement-progress-text {
+  color: #53DDB0;
+}
+
+.achievement-lock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+}
+
+/* DAILY STREAK */
+
+.rewards-streak-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+  padding: 17px;
+  background: #182541;
+  border: 1px solid #45577E;
+  border-radius: 13px;
+}
+
+.rewards-streak-card > span {
+  font-size: 32px;
+}
+
+.rewards-streak-card strong {
+  color: #FFFFFF;
+  font-size: 15px;
+}
+
+.rewards-streak-card p {
+  margin: 5px 0 0;
+  color: #AAB9DA;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* REWARD HISTORY */
+
+.reward-history-list {
+  width: 100%;
+  margin-top: 15px;
+  overflow: hidden;
+  background: #111B33;
+  border: 1px solid #293858;
+  border-radius: 13px;
+}
+
+.reward-history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid #293858;
+}
+
+.reward-history-item:last-child {
+  border-bottom: none;
+}
+
+.reward-history-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #202E50;
+  border-radius: 10px;
+  font-size: 19px;
+}
+
+.reward-history-details {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.reward-history-details strong {
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.reward-history-details small {
+  color: #8FA1C7;
+  font-size: 10px;
+}
+
+.reward-history-amount {
+  flex-shrink: 0;
+  color: #55DDB0;
+  font-size: 12px;
+}
+
+.reward-history-empty {
+  padding: 28px 15px;
+  text-align: center;
+}
+
+.reward-history-empty span {
+  font-size: 30px;
+}
+
+.reward-history-empty p {
+  margin: 10px 0 5px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.reward-history-empty small {
+  color: #9EACCA;
+  font-size: 11px;
+}
+
+/* BACK BUTTON */
+
+.rewards-home-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 13px 23px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  transition: 0.2s ease;
+}
+
+.rewards-home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(66, 217, 255, 0.2);
+}
+
+/* MOBILE REWARD CENTRE */
+
+@media (max-width: 480px) {
+  .rewards-screen {
+    padding: 10px 2px 30px;
+  }
+
+  .rewards-opportunities {
+    grid-template-columns: 1fr;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reward-opportunity-card {
+    padding: 15px;
+  }
+
+  .rewards-section {
+    margin-top: 25px;
+  }
+
+  .reward-history-item {
+    gap: 9px;
+    padding: 12px 10px;
+  }
+
+  .reward-history-details strong {
+    font-size: 11px;
+  }
+
+  .reward-history-amount {
+    font-size: 11px;
+  }
+}
+
+/* =====================================
+   BRAIN LETTERS - REWARD CENTRE
+===================================== */
+
+.rewards-screen {
+  max-width: 680px;
+  justify-content: flex-start;
+  gap: 22px;
+  padding-bottom: 35px;
+}
+
+.rewards-heading {
+  width: 100%;
+  text-align: center;
+}
+
+.rewards-eyebrow {
+  display: inline-block;
+  color: #42D9FF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.rewards-heading h2 {
+  margin: 0;
+  font-size: clamp(25px, 4vw, 32px);
+  color: #FFFFFF;
+}
+
+.rewards-heading p {
+  color: #9CAAC5;
+  font-size: 13px;
+  margin: 9px 0 0;
+}
+
+/* COIN BALANCE */
+
+.rewards-coin-card {
+  width: 100%;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 0%, #344B83, transparent 75%),
+    #172343;
+  border: 1px solid #40568A;
+  border-radius: 18px;
+}
+
+.rewards-coin-icon {
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.rewards-small-label {
+  color: #AAB9DA;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.rewards-coin-card strong {
+  color: #FFD76A;
+  font-size: clamp(34px, 7vw, 46px);
+  margin: 7px 0;
+}
+
+.rewards-coin-card p {
+  color: #AAB9DA;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* REWARD SECTIONS */
+
+.rewards-section {
+  width: 100%;
+  text-align: left;
+}
+
+.rewards-section > h3,
+.rewards-section-heading h3 {
+  color: #AAB9DA;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  margin: 0 0 13px;
+}
+
+.rewards-opportunities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reward-opportunity-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px 13px;
+  background: #131F3A;
+  border: 1px solid #2C3E65;
+  border-radius: 13px;
+}
+
+.reward-card-icon {
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.reward-card-details {
+  min-width: 0;
+}
+
+.reward-card-details h4 {
+  color: #FFFFFF;
+  font-size: 13px;
+  margin: 2px 0 7px;
+}
+
+.reward-card-details p {
+  color: #9CAAC5;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.reward-card-details strong {
+  display: block;
+  color: #FFD76A;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.reward-status {
+  display: inline-block;
+  color: #42D9FF;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.reward-status.claimed {
+  color: #42D9A5;
+}
+
+/* DAILY STREAK */
+
+.rewards-streak-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  background: #1B2542;
+  border: 1px solid #34466F;
+  border-radius: 13px;
+  text-align: left;
+}
+
+.rewards-streak-card > span {
+  font-size: 32px;
+}
+
+.rewards-streak-card strong {
+  color: #FFFFFF;
+  font-size: 15px;
+}
+
+.rewards-streak-card p {
+  color: #9CAAC5;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 5px 0 0;
+}
+
+/* ACHIEVEMENTS */
+
+.rewards-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rewards-section-heading h3 {
+  margin-bottom: 13px;
+}
+
+.rewards-section-heading > span {
+  color: #42D9FF;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.achievement-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  min-width: 0;
+  padding: 14px 12px;
+  background: #131F3A;
+  border: 1px solid #2C3E65;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.achievement-card.achievement-unlocked {
+  background: #152B3B;
+  border-color: #36CFA0;
+}
+
+.achievement-icon {
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.achievement-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-info h4 {
+  color: #FFFFFF;
+  font-size: 12px;
+  margin: 2px 0 6px;
+}
+
+.achievement-info p {
+  color: #9CAAC5;
+  font-size: 10px;
+  line-height: 1.45;
+  min-height: 29px;
+  margin: 0 0 10px;
+}
+
+.achievement-progress-track {
+  height: 5px;
+  width: 100%;
+  overflow: hidden;
+  background: #283654;
+  border-radius: 10px;
+}
+
+.achievement-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7554F7, #24C8FF);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.achievement-unlocked .achievement-progress-fill {
+  background: #36CFA0;
+}
+
+.achievement-progress-text {
+  display: inline-block;
+  margin-top: 7px;
+  color: #42D9FF;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.achievement-unlocked .achievement-progress-text {
+  color: #42D9A5;
+}
+
+.achievement-lock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+}
+
+/* REWARD HISTORY */
+
+.reward-history-list {
+  width: 100%;
+  background: #131F3A;
+  border: 1px solid #2C3E65;
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.reward-history-empty {
+  padding: 25px 15px;
+  text-align: center;
+}
+
+.reward-history-empty > span {
+  font-size: 30px;
+}
+
+.reward-history-empty p {
+  color: #FFFFFF;
+  font-size: 13px;
+  margin: 10px 0 5px;
+}
+
+.reward-history-empty small {
+  color: #9CAAC5;
+  font-size: 11px;
+}
+
+.reward-history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid #293957;
+  text-align: left;
+}
+
+.reward-history-item:last-child {
+  border-bottom: none;
+}
+
+.reward-history-icon {
+  font-size: 24px;
+}
+
+.reward-history-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.reward-history-details strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.reward-history-details small {
+  display: block;
+  color: #91A2C8;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.reward-history-amount {
+  flex-shrink: 0;
+  color: #FFD76A;
+  font-size: 12px;
+}
+
+/* BACK TO GAME */
+
+.rewards-home-button {
+  width: 100%;
+  max-width: 280px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.rewards-home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(36, 200, 255, 0.2);
+}
+
+/* MOBILE REWARD CENTRE */
+
+@media (max-width: 480px) {
+  .rewards-screen {
+    gap: 18px;
+    padding: 5px 0 25px;
+  }
+
+  .rewards-opportunities {
+    grid-template-columns: 1fr;
+  }
+
+  .reward-opportunity-card {
+    padding: 15px;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-card {
+    padding: 15px;
+  }
+
+  .rewards-coin-card {
+    padding: 22px 15px;
+  }
+
+  .rewards-streak-card {
+    padding: 14px;
+  }
+}
+
+/* =====================================
+   BRAIN LETTERS - CONNECTOR ALIGNMENT FIX
+===================================== */
+
+/* Stable wheel container */
+.letter-wheel {
+  position: relative !important;
+  width: 310px !important;
+  height: 290px !important;
+  flex: 0 0 310px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  transform: none !important;
+  overflow: visible !important;
+  touch-action: none;
+}
+
+/* SVG must occupy exactly the wheel's area */
+.letter-wheel .connecting-line {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Consistent letter button dimensions */
+.letter-wheel .letter-button {
+  position: absolute !important;
+  width: 62px !important;
+  height: 62px !important;
+  margin: 0 !important;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+/* Preserve centre positioning during selection */
+.letter-wheel .letter-button:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.letter-wheel .letter-button.selected {
+  transform: translate(-50%, -50%) scale(1.10);
+}
+
+/* Keep SVG and buttons aligned on smaller screens */
+@media (max-width: 480px) {
+  .letter-wheel {
+    transform: scale(0.88) !important;
+    transform-origin: center center !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .letter-wheel {
+    transform: scale(0.80) !important;
+  }
+}
+
+/* =====================================
+   BRAIN LETTERS - SETTINGS PAGE
+===================================== */
+
+.settings-screen {
+  max-width: 680px;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 24px;
+  padding: 10px 0 35px;
+  text-align: left;
+}
+
+/* SETTINGS HEADING */
+
+.settings-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.settings-eyebrow {
+  display: inline-block;
+  color: #42D9FF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 9px;
+}
+
+.settings-heading h2 {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: clamp(26px, 4vw, 33px);
+}
+
+.settings-heading p {
+  margin: 9px 0 0;
+  color: #9CAAC5;
+  font-size: 13px;
+}
+
+/* SETTINGS SECTIONS */
+
+.settings-section {
+  width: 100%;
+}
+
+.settings-section-heading {
+  margin-bottom: 13px;
+}
+
+.settings-section-heading h3 {
+  margin: 0;
+  color: #AAB9DA;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.settings-section-heading p {
+  margin: 6px 0 0;
+  color: #8293B7;
+  font-size: 11px;
+}
+
+/* SETTINGS OPTIONS CONTAINER */
+
+.settings-options {
+  width: 100%;
+  overflow: hidden;
+  background: #131F3A;
+  border: 1px solid #2C3E65;
+  border-radius: 14px;
+}
+
+/* INDIVIDUAL SETTING */
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 76px;
+  padding: 13px 16px;
+  border-bottom: 1px solid #293957;
+}
+
+.settings-option:last-child {
+  border-bottom: none;
+}
+
+.settings-option-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #202E50;
+  border: 1px solid #34466F;
+  border-radius: 11px;
+  font-size: 19px;
+}
+
+.settings-option-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-option-info strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.settings-option-info p {
+  margin: 5px 0 0;
+  color: #91A2C8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* SETTINGS TOGGLE */
+
+.settings-toggle {
+  position: relative;
+  width: 46px;
+  height: 25px;
+  flex-shrink: 0;
+  padding: 0;
+  background: #34415F;
+  border: 1px solid #536486;
+  border-radius: 30px;
+  transition: background 0.25s ease;
+}
+
+.settings-toggle span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 17px;
+  height: 17px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.settings-toggle.toggle-enabled {
+  background: linear-gradient(135deg, #286BCE, #7554F7);
+  border-color: #42D9FF;
+}
+
+.settings-toggle.toggle-enabled span {
+  transform: translateX(21px);
+}
+
+.settings-toggle:focus-visible {
+  outline: 2px solid #42D9FF;
+  outline-offset: 3px;
+}
+
+/* ABOUT THE GAME */
+
+.settings-about-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 19px;
+  background:
+    radial-gradient(
+      circle at 0% 50%,
+      rgba(117, 84, 247, 0.18),
+      transparent 65%
+    ),
+    #131F3A;
+  border: 1px solid #34466F;
+  border-radius: 14px;
+}
+
+.settings-about-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #7554F7, #168DFF);
+  border-radius: 14px;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.settings-about-card strong {
+  color: #FFFFFF;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+}
+
+.settings-about-card p {
+  margin: 5px 0;
+  color: #AAB9DA;
+  font-size: 12px;
+}
+
+.settings-about-card small {
+  color: #7185AE;
+  font-size: 10px;
+}
+
+/* DATA MANAGEMENT */
+
+.settings-reset-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px;
+  background: #171D35;
+  border: 1px solid #493653;
+  border-radius: 13px;
+}
+
+.settings-reset-info {
+  min-width: 0;
+}
+
+.settings-reset-info strong {
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.settings-reset-info p {
+  margin: 6px 0 0;
+  color: #9CAAC5;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.settings-reset-button {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  color: #FF9B9B;
+  background: rgba(220, 65, 85, 0.12);
+  border: 1px solid rgba(255, 100, 120, 0.4);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.settings-reset-button:hover {
+  background: rgba(220, 65, 85, 0.25);
+  border-color: #FF6B81;
+}
+
+/* RESET CONFIRMATION MODAL */
+
+.settings-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(7px);
+}
+
+.settings-confirm-modal {
+  width: 100%;
+  max-width: 390px;
+  padding: 28px 23px;
+  background: #131F3A;
+  border: 1px solid #435582;
+  border-radius: 17px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  animation: settingsModalAppear 0.2s ease;
+}
+
+@keyframes settingsModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.settings-confirm-icon {
+  margin-bottom: 12px;
+  font-size: 38px;
+}
+
+.settings-confirm-modal h3 {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: 19px;
+}
+
+.settings-confirm-modal p {
+  margin: 12px 0 22px;
+  color: #AAB9DA;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.settings-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.settings-confirm-actions button {
+  flex: 1;
+  padding: 12px 9px;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  transition: 0.2s ease;
+}
+
+.settings-cancel-button {
+  color: #C7D3EF;
+  background: #202E50;
+  border: 1px solid #40527A;
+}
+
+.settings-cancel-button:hover {
+  background: #2B3B60;
+}
+
+.settings-confirm-button {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #B83F58, #8D315B);
+  border: 1px solid #E36B80;
+}
+
+.settings-confirm-button:hover {
+  filter: brightness(1.15);
+}
+
+/* BACK TO MAIN GAME */
+
+.settings-home-button {
+  width: 100%;
+  max-width: 280px;
+  align-self: center;
+  padding: 14px 20px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.settings-home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(36, 200, 255, 0.2);
+}
+
+/* MOBILE SETTINGS PAGE */
+
+@media (max-width: 480px) {
+  .settings-screen {
+    gap: 21px;
+    padding: 5px 0 25px;
+  }
+
+  .settings-option {
+    gap: 10px;
+    min-height: 72px;
+    padding: 12px 11px;
+  }
+
+  .settings-option-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .settings-option-info strong {
+    font-size: 12px;
+  }
+
+  .settings-option-info p {
+    font-size: 10px;
+  }
+
+  .settings-toggle {
+    width: 43px;
+    height: 24px;
+  }
+
+  .settings-toggle.toggle-enabled span {
+    transform: translateX(18px);
+  }
+
+  .settings-reset-card {
+    align-items: flex-start;
+    padding: 14px 12px;
+    gap: 9px;
+  }
+
+  .settings-reset-button {
+    padding: 9px 11px;
+  }
+
+  .settings-about-card {
+    padding: 15px;
+  }
+
+  .settings-confirm-modal {
+    padding: 25px 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .settings-option {
+    gap: 8px;
+    padding: 11px 8px;
+  }
+
+  .settings-option-info p {
+    font-size: 9px;
+  }
+
+  .settings-toggle {
+    width: 40px;
+  }
+
+  .settings-reset-info p {
+    font-size: 10px;
+  }
+}
+/* MOVE NEXT LEVEL BUTTON UPWARD */
+
+.next-level-button {
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+}
+/* =====================================
+   EXTRA WORD COINS
+===================================== */
+
+.extra-words-panel {
+  width: min(280px, calc(100vw - 32px));
+}
+
+.extra-word-coins {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 11px 12px;
+  background: #1B2948;
+  border: 1px solid #34466F;
+  border-radius: 9px;
+}
+
+.extra-word-coins span {
+  color: #AAB9DA;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.extra-word-coins strong {
+  color: #FFD978;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.collect-extra-coins-button {
+  width: 100%;
+  padding: 11px 12px;
+  margin-bottom: 14px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease;
+}
+
+.collect-extra-coins-button:hover {
+  background: linear-gradient(135deg, #347FE8, #8958F0);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(66, 217, 255, 0.18);
+}
+
+.collect-extra-coins-button:active {
+  transform: scale(0.97);
+}
+.brand-icon {
+  display: block;
+  object-fit: cover;
+  background: transparent;
+  border: none;
+}
+/* OFFICIAL LOGO IN SETTINGS */
+
+.settings-about-icon {
+  display: block;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+}
+
+.rewards-heading {
+  margin-top: 25px;
+  margin-bottom: 13px;
+}
+
+.rewards-heading h2 {
+  text-transform: uppercase;
+  font-family: 'Arial Black', 'Trebuchet MS', sans-serif;
+  font-size: clamp(25px, 5vw, 31px);
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #42D9FF;
+  text-shadow: 0 0 12px rgba(66, 217, 255, 0.2);
+}
+/* ACHIEVEMENT CLAIM BUTTON */
+.achievement-claim-button {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.achievement-claim-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.achievement-claim-button:active {
+  transform: scale(0.96);
+}
+
+.achievement-claimed {
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+/* STARTUP SPLASH SCREEN */
+.splash-screen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #0b1020;
+  color: #ffffff;
+  text-align: center;
+  animation: splashFadeIn 0.45s ease-out;
+}
+
+.splash-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  animation: splashLogoPulse 1.6s ease-in-out infinite;
+}
+
+.splash-screen h1 {
+  margin: 8px 0 0;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.splash-screen p {
+  margin: 0;
+  color: #aebbd3;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+@keyframes splashFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes splashLogoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+/* PAGE TRANSITIONS */
+.page-transition {
+  animation: pageFadeSlide 1.2s ease both;
+}
+
+@keyframes pageFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =====================================
+   BRAIN LETTERS - THEME PREVIEW SYSTEM
+===================================== */
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.theme-option {
+  min-width: 0;
+  padding: 8px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  color: inherit;
+  text-align: left;
+}
+
+.theme-option.selected-theme {
+  border-color: #42D9FF;
+  background: rgba(66, 217, 255, 0.08);
+}
+
+.theme-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.35;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.theme-name {
+  display: block;
+  margin-top: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.theme-check {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #42D9FF;
+  color: #081321;
+  font-weight: 900;
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .theme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =====================================
+   12 DISTINCT THEME TEXTURES
+===================================== */
+
+/* 1. Vintage Parchment */
+.theme-preview-parchment {
+  background:
+    radial-gradient(ellipse at 20% 30%, #f8e5b0 0%, transparent 35%),
+    radial-gradient(ellipse at 80% 75%, #a87942 0%, transparent 40%),
+    repeating-linear-gradient(12deg, transparent 0 5px, #9b713b33 6px 7px),
+    linear-gradient(135deg, #e8c98b, #b98b52);
+}
+
+/* 2. Classic Leather */
+.theme-preview-leather {
+  background:
+    repeating-linear-gradient(45deg, #ffffff08 0 2px, transparent 2px 5px),
+    radial-gradient(ellipse at 30% 25%, #a36b43, transparent 55%),
+    linear-gradient(135deg, #542c20, #26120e);
+}
+
+/* 3. Cosmic Galaxy */
+.theme-preview-galaxy {
+  background:
+    radial-gradient(circle at 20% 25%, #ffffff 0 1px, transparent 2px),
+    radial-gradient(circle at 75% 65%, #ffffff 0 1px, transparent 2px),
+    radial-gradient(ellipse at 50% 50%, #8738bd, transparent 45%),
+    linear-gradient(135deg, #080b2b, #241052, #061b38);
+}
+
+/* 4. Emerald Marble */
+.theme-preview-marble {
+  background:
+    repeating-linear-gradient(125deg, transparent 0 13px, #d5ffe055 14px 16px, transparent 17px 27px),
+    radial-gradient(ellipse at 70% 25%, #3c9975, transparent 50%),
+    linear-gradient(135deg, #063b31, #071d1b);
+}
+
+/* 5. Carbon Fiber */
+.theme-preview-carbon {
+  background:
+    repeating-linear-gradient(45deg, #ffffff12 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, #00000055 0 2px, transparent 2px 6px),
+    linear-gradient(135deg, #303943, #090d12);
+}
+
+/* 6. Retro 70s */
+.theme-preview-retro {
+  background:
+    repeating-radial-gradient(circle at 20% 50%, #f8c45b 0 9px, #e4773d 10px 18px, #9b3c55 19px 27px, transparent 28px 38px),
+    linear-gradient(135deg, #6c274d, #e4773d);
+}
+
+/* 7. Royal Velvet */
+.theme-preview-velvet {
+  background:
+    repeating-linear-gradient(115deg, #ffffff09 0 3px, transparent 4px 9px),
+    radial-gradient(ellipse at 40% 35%, #8d397d, transparent 55%),
+    linear-gradient(135deg, #35103e, #170a28);
+}
+
+/* 8. Frozen Ice */
+.theme-preview-ice {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, #ffffff66 15px 16px, transparent 17px 28px),
+    radial-gradient(circle at 75% 25%, #ffffffaa, transparent 25%),
+    linear-gradient(135deg, #b9f5ff, #328dbb, #123c73);
+}
+
+/* 9. Sunset Desert */
+.theme-preview-desert {
+  background:
+    repeating-linear-gradient(170deg, transparent 0 20px, #ffdf8c55 21px 23px, transparent 24px 36px),
+    radial-gradient(ellipse at 70% 25%, #ffd17b, transparent 40%),
+    linear-gradient(160deg, #9e3f37, #e58b49, #572d37);
+}
+
+/* 10. Ocean Depths */
+.theme-preview-ocean {
+  background:
+    repeating-radial-gradient(ellipse at 50% 120%, transparent 0 12px, #66d9e944 13px 15px, transparent 16px 27px),
+    radial-gradient(ellipse at 25% 25%, #168b9e, transparent 45%),
+    linear-gradient(135deg, #062c50, #031323);
+}
+
+/* 11. Wooden Classic */
+.theme-preview-wood {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, #49271366 8px 10px, transparent 11px 18px),
+    repeating-radial-gradient(ellipse at 35% 50%, #f0c18a22 0 3px, transparent 4px 15px),
+    linear-gradient(100deg, #a66a36, #59331d, #bd8046);
+}
+
+/* 12. Neon Tech */
+.theme-preview-neon {
+  background:
+    linear-gradient(#21d9ff33 1px, transparent 1px),
+    linear-gradient(90deg, #21d9ff33 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #753bff88, transparent 55%),
+    #080d25;
+  background-size: 18px 18px, 18px 18px, auto, auto;
+}
+
+/* =====================================
+   APPLY SELECTED THEME TO GAME BACKGROUND
+===================================== */
+
+.game-container[data-theme="vintage-parchment"] {
+  background:
+    radial-gradient(ellipse at 20% 30%, #f8e5b022, transparent 40%),
+    repeating-linear-gradient(12deg, transparent 0 5px, #9b713b18 6px 7px),
+    linear-gradient(135deg, #4b3828, #211b1a) !important;
+}
+
+.game-container[data-theme="classic-leather"] {
+  background:
+    repeating-linear-gradient(45deg, #ffffff08 0 2px, transparent 2px 5px),
+    radial-gradient(ellipse at 30% 25%, #a36b4322, transparent 55%),
+    linear-gradient(135deg, #321d18, #100b09) !important;
+}
+
+.game-container[data-theme="cosmic-galaxy"] {
+  background:
+    radial-gradient(circle at 20% 25%, #ffffff55 0 1px, transparent 2px),
+    radial-gradient(circle at 75% 65%, #ffffff44 0 1px, transparent 2px),
+    radial-gradient(ellipse at 50% 50%, #8738bd55, transparent 45%),
+    linear-gradient(135deg, #080b2b, #241052, #061b38) !important;
+}
+
+.game-container[data-theme="emerald-marble"] {
+  background:
+    repeating-linear-gradient(125deg, transparent 0 13px, #d5ffe022 14px 16px, transparent 17px 27px),
+    linear-gradient(135deg, #063b31, #071d1b) !important;
+}
+
+.game-container[data-theme="carbon-fiber"] {
+  background:
+    repeating-linear-gradient(45deg, #ffffff0c 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, #00000055 0 2px, transparent 2px 6px),
+    linear-gradient(135deg, #303943, #090d12) !important;
+}
+
+.game-container[data-theme="retro-70s"] {
+  background:
+    repeating-radial-gradient(circle at 20% 50%, #f8c45b22 0 9px, #e4773d22 10px 18px, #9b3c5522 19px 27px, transparent 28px 38px),
+    linear-gradient(135deg, #6c274d, #542b2a) !important;
+}
+
+.game-container[data-theme="royal-velvet"] {
+  background:
+    repeating-linear-gradient(115deg, #ffffff09 0 3px, transparent 4px 9px),
+    radial-gradient(ellipse at 40% 35%, #8d397d44, transparent 55%),
+    linear-gradient(135deg, #35103e, #170a28) !important;
+}
+
+.game-container[data-theme="frozen-ice"] {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, #ffffff22 15px 16px, transparent 17px 28px),
+    linear-gradient(135deg, #174d70, #09213f) !important;
+}
+
+.game-container[data-theme="sunset-desert"] {
+  background:
+    repeating-linear-gradient(170deg, transparent 0 20px, #ffdf8c22 21px 23px, transparent 24px 36px),
+    linear-gradient(160deg, #9e3f37, #75402f, #39232c) !important;
+}
+
+.game-container[data-theme="ocean-depths"] {
+  background:
+    repeating-radial-gradient(ellipse at 50% 120%, transparent 0 12px, #66d9e922 13px 15px, transparent 16px 27px),
+    linear-gradient(135deg, #062c50, #031323) !important;
+}
+
+.game-container[data-theme="wooden-classic"] {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, #49271355 8px 10px, transparent 11px 18px),
+    linear-gradient(100deg, #59331d, #2c1a13) !important;
+}
+
+.game-container[data-theme="neon-tech"] {
+  background:
+    linear-gradient(#21d9ff22 1px, transparent 1px),
+    linear-gradient(90deg, #21d9ff22 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #753bff44, transparent 55%),
+    #080d25 !important;
+  background-size: 24px 24px, 24px 24px, auto, auto !important;
+}
+
+/* =====================================
+   THEME THE PUZZLE BOARD AND LETTER WHEEL
+===================================== */
+
+/* 1. VINTAGE PARCHMENT */
+.game-container[data-theme="vintage-parchment"] .puzzle-cell,
+.game-container[data-theme="vintage-parchment"] .letter-button {
+  background:
+    repeating-linear-gradient(12deg, transparent 0 5px, #80572b22 6px 7px),
+    linear-gradient(145deg, #f3d9a4, #c49a60) !important;
+  color: #392416 !important;
+  border-color: #9b713b !important;
+  box-shadow: inset 0 1px 5px #fff5d0, 0 3px 7px #0005 !important;
+}
+
+/* 2. CLASSIC LEATHER */
+.game-container[data-theme="classic-leather"] .puzzle-cell,
+.game-container[data-theme="classic-leather"] .letter-button {
+  background:
+    repeating-linear-gradient(45deg, #ffffff0c 0 2px, transparent 2px 5px),
+    linear-gradient(145deg, #75442e, #321911) !important;
+  color: #fff0d8 !important;
+  border-color: #a16c45 !important;
+  box-shadow: inset 0 1px 7px #ffffff18, 0 3px 8px #0008 !important;
+}
+
+/* 3. COSMIC GALAXY */
+.game-container[data-theme="cosmic-galaxy"] .puzzle-cell,
+.game-container[data-theme="cosmic-galaxy"] .letter-button {
+  background:
+    radial-gradient(circle at 25% 20%, #ffffff44 0 1px, transparent 2px),
+    linear-gradient(145deg, #39216e, #111a42) !important;
+  color: #ffffff !important;
+  border-color: #9870e9 !important;
+  box-shadow: inset 0 0 12px #a34cff44, 0 3px 9px #0008 !important;
+}
+
+/* 4. EMERALD MARBLE */
+.game-container[data-theme="emerald-marble"] .puzzle-cell,
+.game-container[data-theme="emerald-marble"] .letter-button {
+  background:
+    repeating-linear-gradient(125deg, transparent 0 13px, #d5ffe033 14px 16px, transparent 17px 27px),
+    linear-gradient(145deg, #17664e, #062c25) !important;
+  color: #eafff2 !important;
+  border-color: #68c49a !important;
+  box-shadow: inset 0 1px 8px #aaffd322, 0 3px 8px #0008 !important;
+}
+
+/* 5. CARBON FIBER */
+.game-container[data-theme="carbon-fiber"] .puzzle-cell,
+.game-container[data-theme="carbon-fiber"] .letter-button {
+  background:
+    repeating-linear-gradient(45deg, #ffffff12 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, #00000055 0 2px, transparent 2px 6px),
+    linear-gradient(145deg, #39434d, #10151b) !important;
+  color: #ffffff !important;
+  border-color: #788b9b !important;
+  box-shadow: inset 0 1px 7px #ffffff16, 0 3px 8px #0009 !important;
+}
+
+/* 6. RETRO 70s */
+.game-container[data-theme="retro-70s"] .puzzle-cell,
+.game-container[data-theme="retro-70s"] .letter-button {
+  background:
+    repeating-linear-gradient(135deg, #ffffff12 0 4px, transparent 5px 10px),
+    linear-gradient(145deg, #e4773d, #8f3455) !important;
+  color: #fff8d9 !important;
+  border-color: #f8c45b !important;
+  box-shadow: inset 0 1px 6px #ffe2a044, 0 3px 8px #0007 !important;
+}
+
+/* 7. ROYAL VELVET */
+.game-container[data-theme="royal-velvet"] .puzzle-cell,
+.game-container[data-theme="royal-velvet"] .letter-button {
+  background:
+    repeating-linear-gradient(115deg, #ffffff10 0 3px, transparent 4px 9px),
+    radial-gradient(ellipse at 40% 30%, #8d397d, #35103e 75%) !important;
+  color: #fff0ff !important;
+  border-color: #c18bd2 !important;
+  box-shadow: inset 0 1px 9px #ffffff18, 0 3px 8px #0009 !important;
+}
+
+/* 8. FROZEN ICE */
+.game-container[data-theme="frozen-ice"] .puzzle-cell,
+.game-container[data-theme="frozen-ice"] .letter-button {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, #ffffff55 15px 16px, transparent 17px 28px),
+    linear-gradient(145deg, #a9eaff, #367eae) !important;
+  color: #092d4a !important;
+  border-color: #d5f8ff !important;
+  box-shadow: inset 0 1px 8px #ffffff99, 0 3px 8px #0006 !important;
+}
+
+/* 9. SUNSET DESERT */
+.game-container[data-theme="sunset-desert"] .puzzle-cell,
+.game-container[data-theme="sunset-desert"] .letter-button {
+  background:
+    repeating-linear-gradient(170deg, transparent 0 20px, #ffdf8c44 21px 23px, transparent 24px 36px),
+    linear-gradient(145deg, #e58b49, #923d38) !important;
+  color: #fff5df !important;
+  border-color: #ffc779 !important;
+  box-shadow: inset 0 1px 7px #ffe3aa44, 0 3px 8px #0007 !important;
+}
+
+/* 10. OCEAN DEPTHS */
+.game-container[data-theme="ocean-depths"] .puzzle-cell,
+.game-container[data-theme="ocean-depths"] .letter-button {
+  background:
+    repeating-radial-gradient(ellipse at 50% 120%, transparent 0 12px, #66d9e933 13px 15px, transparent 16px 27px),
+    linear-gradient(145deg, #11617b, #05233e) !important;
+  color: #e5fbff !important;
+  border-color: #4db9d1 !important;
+  box-shadow: inset 0 1px 8px #54d9ed33, 0 3px 8px #0008 !important;
+}
+
+/* 11. WOODEN CLASSIC */
+.game-container[data-theme="wooden-classic"] .puzzle-cell,
+.game-container[data-theme="wooden-classic"] .letter-button {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, #49271366 8px 10px, transparent 11px 18px),
+    linear-gradient(100deg, #bd8046, #70401f) !important;
+  color: #fff0d5 !important;
+  border-color: #d29a5b !important;
+  box-shadow: inset 0 1px 7px #ffe0a033, 0 3px 8px #0008 !important;
+}
+
+/* 12. NEON TECH */
+.game-container[data-theme="neon-tech"] .puzzle-cell,
+.game-container[data-theme="neon-tech"] .letter-button {
+  background:
+    linear-gradient(#21d9ff18 1px, transparent 1px),
+    linear-gradient(90deg, #21d9ff18 1px, transparent 1px),
+    linear-gradient(145deg, #19264c, #090d25) !important;
+  background-size: 12px 12px, 12px 12px, auto !important;
+  color: #62efff !important;
+  border-color: #21d9ff !important;
+  box-shadow: inset 0 0 10px #21d9ff22, 0 0 9px #21d9ff44 !important;
+}
+
+/* =====================================
+   THEME SYSTEM - BUTTONS AND PANELS
+===================================== */
+
+/* THEME COLOUR SETTINGS */
+
+.game-container[data-theme="vintage-parchment"] {
+  --ui-panel: #493522;
+  --ui-surface: #62472e;
+  --ui-border: #b58b53;
+  --ui-accent: #e8bd73;
+  --ui-text: #fff0d5;
+}
+
+.game-container[data-theme="classic-leather"] {
+  --ui-panel: #291711;
+  --ui-surface: #43271d;
+  --ui-border: #966344;
+  --ui-accent: #d29b69;
+  --ui-text: #fff0df;
+}
+
+.game-container[data-theme="cosmic-galaxy"] {
+  --ui-panel: #111537;
+  --ui-surface: #211c50;
+  --ui-border: #7655b8;
+  --ui-accent: #bd8aff;
+  --ui-text: #f5edff;
+}
+
+.game-container[data-theme="emerald-marble"] {
+  --ui-panel: #092c25;
+  --ui-surface: #104638;
+  --ui-border: #438c70;
+  --ui-accent: #7be0ad;
+  --ui-text: #eafff2;
+}
+
+.game-container[data-theme="carbon-fiber"] {
+  --ui-panel: #111820;
+  --ui-surface: #26323d;
+  --ui-border: #687987;
+  --ui-accent: #a8d5ed;
+  --ui-text: #f1f6fa;
+}
+
+.game-container[data-theme="retro-70s"] {
+  --ui-panel: #54263d;
+  --ui-surface: #77364b;
+  --ui-border: #e59b4c;
+  --ui-accent: #ffd16d;
+  --ui-text: #fff2d7;
+}
+
+.game-container[data-theme="royal-velvet"] {
+  --ui-panel: #24102e;
+  --ui-surface: #421b4b;
+  --ui-border: #9864a5;
+  --ui-accent: #e0a4e9;
+  --ui-text: #fff0ff;
+}
+
+.game-container[data-theme="frozen-ice"] {
+  --ui-panel: #10334f;
+  --ui-surface: #1d5275;
+  --ui-border: #72cce9;
+  --ui-accent: #a8efff;
+  --ui-text: #effcff;
+}
+
+.game-container[data-theme="sunset-desert"] {
+  --ui-panel: #542d2c;
+  --ui-surface: #824334;
+  --ui-border: #d88b55;
+  --ui-accent: #ffd18a;
+  --ui-text: #fff2df;
+}
+
+.game-container[data-theme="ocean-depths"] {
+  --ui-panel: #062238;
+  --ui-surface: #0b3b55;
+  --ui-border: #287c91;
+  --ui-accent: #5edbea;
+  --ui-text: #e4fbff;
+}
+
+.game-container[data-theme="wooden-classic"] {
+  --ui-panel: #382316;
+  --ui-surface: #59371f;
+  --ui-border: #a87845;
+  --ui-accent: #e8bd80;
+  --ui-text: #fff0d5;
+}
+
+.game-container[data-theme="neon-tech"] {
+  --ui-panel: #0a1028;
+  --ui-surface: #151f42;
+  --ui-border: #176e9b;
+  --ui-accent: #36eaff;
+  --ui-text: #e4fbff;
+}
+
+/* SHARED PANEL STYLING */
+
+.game-container[data-theme] .coin-display,
+.game-container[data-theme] .menu-toggle,
+.game-container[data-theme] .menu-panel,
+.game-container[data-theme] .extra-words-panel,
+.game-container[data-theme] .daily-clue-card,
+.game-container[data-theme] .rewards-coin-card,
+.game-container[data-theme] .reward-opportunity-card,
+.game-container[data-theme] .achievement-card,
+.game-container[data-theme] .settings-options {
+  background-color: var(--ui-panel) !important;
+  border-color: var(--ui-border) !important;
+  color: var(--ui-text) !important;
+}
+
+/* SECONDARY SURFACES */
+
+.game-container[data-theme] .settings-option-icon,
+.game-container[data-theme] .menu-item:hover,
+.game-container[data-theme] .menu-item.active {
+  background-color: var(--ui-surface) !important;
+  border-color: var(--ui-border) !important;
+  color: var(--ui-text) !important;
+}
+
+/* HINT AND SHUFFLE BUTTONS */
+
+.game-container[data-theme] .hint-button,
+.game-container[data-theme] .shuffle-button {
+  background: var(--ui-surface) !important;
+  border: 1px solid var(--ui-border) !important;
+  color: var(--ui-accent) !important;
+}
+
+/* COIN BUTTON */
+
+.game-container[data-theme] .coin-display button {
+  background: var(--ui-accent) !important;
+  color: var(--ui-panel) !important;
+}
+
+/* MAIN ACTION BUTTONS */
+
+.game-container[data-theme] .next-level-button,
+.game-container[data-theme] .settings-option button {
+  background: var(--ui-accent) !important;
+  color: var(--ui-panel) !important;
+  border-color: var(--ui-border) !important;
+}
+
+/* PANEL TEXT */
+
+.game-container[data-theme] .menu-item,
+.game-container[data-theme] .settings-option-info,
+.game-container[data-theme] .reward-card-details,
+.game-container[data-theme] .achievement-info {
+  color: var(--ui-text);
+}
+
+/* THEME ACCENT TEXT */
+
+.game-container[data-theme] .settings-eyebrow,
+.game-container[data-theme] .settings-section-heading h3,
+.game-container[data-theme] .daily-clue-label,
+.game-container[data-theme] .rewards-small-label {
+  color: var(--ui-accent) !important;
+}
+
+/* =====================================
+   BRAIN LETTERS - THEMES GALLERY
+===================================== */
+
+.themes-screen {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.themes-heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.themes-heading h2 {
+  color: #ffc43d;
+  font-size: 32px;
+  font-weight: 1000;
+  letter-spacing: 3px;
+  margin: 0 0 6px;
+  text-shadow: 0 3px 8px #000;
+}
+
+.themes-heading p {
+  color: #fff0b5;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.theme-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-card:hover {
+  transform: translateY(-3px);
+}
+
+.theme-card-selected {
+  border: 3px solid #ffd34e;
+  box-shadow: 0 0 14px rgba(255, 195, 40, 0.65);
+}
+
+.theme-card-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.39;
+  overflow: hidden;
+  background: #10182b;
+}
+
+.theme-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.theme-card-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffd34e;
+  color: #17100a;
+  font-size: 18px;
+  font-weight: 1000;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px #0009;
+}
+
+.themes-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.themes-apply-button,
+.themes-back-button {
+  width: min(100%, 280px);
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.themes-apply-button {
+  color: #211300;
+  background: linear-gradient(180deg, #ffe58a, #e99b19);
+  border: 2px solid #fff0a8;
+  box-shadow: 0 4px 12px #0006;
+}
+
+.themes-apply-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.themes-back-button {
+  color: #fff;
+  background: #17264a;
+  border: 1px solid #8296c5;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .themes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .themes-screen {
+    padding: 10px;
+  }
+
+  .themes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .themes-heading h2 {
+    font-size: 25px;
+  }
+
+  .themes-heading p {
+    font-size: 13px;
+  }
+
+  .theme-card {
+    border-radius: 11px;
+  }
+}
+/* =====================================
+   THEMES GALLERY - MINI GAME PREVIEWS
+===================================== */
+
+.theme-card-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.37;
+  overflow: hidden;
+  border-radius: 13px;
+  isolation: isolate;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.35),
+    0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+.theme-mock-board {
+  position: absolute;
+  inset: 8% 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-mock-words {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  padding: 0 2px;
+}
+
+.theme-mock-words span {
+  aspect-ratio: 1;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #ffe7a0, #a96822);
+  border: 1px solid #fff0bd;
+  box-shadow: 0 2px 4px #0008;
+}
+
+.theme-mock-wheel {
+  position: relative;
+  width: 85%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #fff0bf, #d59a42 75%);
+  border: 3px solid #fff0b0;
+  box-shadow:
+    0 0 0 3px #5b3215,
+    0 3px 10px #0009;
+}
+
+.mock-letter {
+  position: absolute;
+  color: #28180d;
+  font-size: clamp(12px, 2.2vw, 25px);
+  font-weight: 1000;
+  text-shadow: 0 1px 1px #fff;
+}
+
+.mock-top {
+  top: 10%;
+}
+
+.mock-left {
+  left: 12%;
+  top: 38%;
+}
+
+.mock-right {
+  right: 12%;
+  top: 38%;
+}
+
+.mock-bottom-left {
+  left: 30%;
+  bottom: 9%;
+}
+
+.mock-bottom-right {
+  right: 27%;
+  bottom: 9%;
+}
+
+.theme-mock-controls {
+  position: absolute;
+  top: 29%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.theme-controls-left {
+  left: 5%;
+}
+
+.theme-controls-right {
+  right: 5%;
+}
+
+.theme-mock-controls span {
+  width: clamp(19px, 3vw, 34px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff4c7;
+  font-size: clamp(10px, 1.5vw, 17px);
+  background: linear-gradient(145deg, #493018, #100b08);
+  border: 2px solid #e9b94e;
+  box-shadow: 0 2px 5px #000a;
+}
+
+.theme-card-name {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  padding: 4px 3px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  font-size: clamp(9px, 1.5vw, 16px);
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(180deg, #69370e, #180b05);
+  border: 2px solid #e9b94e;
+  border-radius: 20px;
+  text-shadow: 0 2px 3px #000;
+  box-shadow: 0 2px 5px #0009;
+  z-index: 2;
+}
+
+/* =====================================
+   MATCH GALLERY BACKGROUNDS TO GAME THEMES
+===================================== */
+
+.theme-card-art[data-theme="vintage-parchment"] {
+  background:
+    radial-gradient(ellipse at 20% 30%, #f8e5b022, transparent 40%),
+    repeating-linear-gradient(12deg, transparent 0 5px, #9b713b18 6px 7px),
+    linear-gradient(135deg, #4b3828, #211b1a);
+}
+
+.theme-card-art[data-theme="classic-leather"] {
+  background:
+    repeating-linear-gradient(45deg, #ffffff08 0 2px, transparent 2px 5px),
+    radial-gradient(ellipse at 30% 25%, #a36b4322, transparent 55%),
+    linear-gradient(135deg, #321d18, #100b09);
+}
+
+.theme-card-art[data-theme="cosmic-galaxy"] {
+  background:
+    radial-gradient(circle at 20% 25%, #ffffff55 0 1px, transparent 2px),
+    radial-gradient(circle at 75% 65%, #ffffff44 0 1px, transparent 2px),
+    radial-gradient(ellipse at 50% 50%, #8738bd55, transparent 45%),
+    linear-gradient(135deg, #080b2b, #241052, #061b38);
+}
+
+.theme-card-art[data-theme="emerald-marble"] {
+  background:
+    repeating-linear-gradient(125deg, transparent 0 13px, #d5ffe022 14px 16px, transparent 17px 27px),
+    linear-gradient(135deg, #063b31, #071d1b);
+}
+
+.theme-card-art[data-theme="carbon-fiber"] {
+  background:
+    repeating-linear-gradient(45deg, #ffffff0c 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, #00000055 0 2px, transparent 2px 6px),
+    linear-gradient(135deg, #303943, #090d12);
+}
+
+.theme-card-art[data-theme="retro-70s"] {
+  background:
+    repeating-radial-gradient(circle at 20% 50%, #f8c45b22 0 9px, #e4773d22 10px 18px, #9b3c5522 19px 27px, transparent 28px 38px),
+    linear-gradient(135deg, #6c274d, #542b2a);
+}
+
+.theme-card-art[data-theme="royal-velvet"] {
+  background:
+    repeating-linear-gradient(115deg, #ffffff09 0 3px, transparent 4px 9px),
+    radial-gradient(ellipse at 40% 35%, #8d397d44, transparent 55%),
+    linear-gradient(135deg, #35103e, #170a28);
+}
+
+.theme-card-art[data-theme="frozen-ice"] {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, #ffffff22 15px 16px, transparent 17px 28px),
+    linear-gradient(135deg, #174d70, #09213f);
+}
+
+.theme-card-art[data-theme="sunset-desert"] {
+  background:
+    repeating-linear-gradient(170deg, transparent 0 20px, #ffdf8c22 21px 23px, transparent 24px 36px),
+    linear-gradient(160deg, #9e3f37, #75402f, #39232c);
+}
+
+.theme-card-art[data-theme="ocean-depths"] {
+  background:
+    repeating-radial-gradient(ellipse at 50% 120%, transparent 0 12px, #66d9e922 13px 15px, transparent 16px 27px),
+    linear-gradient(135deg, #062c50, #031323);
+}
+
+.theme-card-art[data-theme="wooden-classic"] {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, #49271355 8px 10px, transparent 11px 18px),
+    linear-gradient(100deg, #59331d, #2c1a13);
+}
+
+.theme-card-art[data-theme="neon-tech"] {
+  background:
+    linear-gradient(#21d9ff22 1px, transparent 1px),
+    linear-gradient(90deg, #21d9ff22 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #753bff44, transparent 55%),
+    #080d25;
+  background-size: 24px 24px, 24px 24px, auto, auto;
+}
+
+/* =====================================
+   CLEAN THEME-ONLY GALLERY
+===================================== */
+
+.theme-card {
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+}
+
+.theme-card-selected {
+  border-color: #ffd34e;
+}
+
+.theme-card-art {
+  width: 100%;
+  aspect-ratio: 1.25;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* Selected theme indicator */
+.theme-card-check {
+  top: 8px;
+  right: 8px;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  background: #ffd34e;
+  color: #17100a;
+  border: 2px solid #fff2b0;
+  box-shadow: 0 2px 6px #0008;
+}
+
+/* Keep gallery focused on the artwork */
+.theme-card-art img {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .themes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .theme-card-art {
+    aspect-ratio: 1.2;
+  }
+}
+
+/* =====================================
+   CLEAN THEME-ONLY GALLERY
+===================================== */
+
+.theme-card {
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+}
+
+.theme-card-selected {
+  border-color: #ffd34e;
+}
+
+.theme-card-art {
+  width: 100%;
+  aspect-ratio: 1.25;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* Selected theme indicator */
+.theme-card-check {
+  top: 8px;
+  right: 8px;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  background: #ffd34e;
+  color: #17100a;
+  border: 2px solid #fff2b0;
+  box-shadow: 0 2px 6px #0008;
+}
+
+/* Keep gallery focused on the artwork */
+.theme-card-art img {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .themes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .theme-card-art {
+    aspect-ratio: 1.2;
+  }
+}
+
+/* =====================================
+   CLEAN THEME-ONLY GALLERY
+===================================== */
+
+.theme-card {
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+}
+
+.theme-card-selected {
+  border-color: #ffd34e;
+}
+
+.theme-card-art {
+  width: 100%;
+  aspect-ratio: 1.25;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* Selected theme indicator */
+.theme-card-check {
+  top: 8px;
+  right: 8px;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  background: #ffd34e;
+  color: #17100a;
+  border: 2px solid #fff2b0;
+  box-shadow: 0 2px 6px #0008;
+}
+
+/* Keep gallery focused on the artwork */
+.theme-card-art img {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .themes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .theme-card-art {
+    aspect-ratio: 1.2;
+  }
+}
+
+/* THEME DROPDOWN INSIDE HAMBURGER MENU */
+.menu-themes-wrapper {
+  width: 100%;
+}
+
+.menu-theme-arrow {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.menu-theme-dropdown {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  padding: 10px;
+  margin: 4px 0 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.08);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.menu-theme-option {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 9px;
+}
+
+.menu-theme-option .theme-card-art {
+  width: 100%;
+  min-height: 58px;
+  aspect-ratio: 1.3;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.menu-theme-option.selected .theme-card-art {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+/* =====================================
+   BRAIN LETTERS - PREMIUM WELCOME SCREEN
+===================================== */
+
+.game-container.welcome-screen {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 35px 20px;
+  isolation: isolate;
+}
+
+.welcome-screen::before,
+.welcome-screen::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(2px);
+}
+
+.welcome-screen::before {
+  width: 320px;
+  height: 320px;
+  top: -130px;
+  left: -100px;
+  background: radial-gradient(circle, #7554f755, transparent 70%);
+}
+
+.welcome-screen::after {
+  width: 380px;
+  height: 380px;
+  right: -160px;
+  bottom: -170px;
+  background: radial-gradient(circle, #168dff44, transparent 70%);
+}
+
+.welcome-content {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+  animation: welcomeAppear 0.8s ease both;
+}
+
+.welcome-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.welcome-logo {
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 18px #42d9ff55);
+  animation: welcomeLogoFloat 3s ease-in-out infinite;
+}
+
+.welcome-brand > span {
+  color: #42d9ff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.welcome-brand h1 {
+  margin: 0;
+  font-size: clamp(27px, 6vw, 42px);
+  line-height: 1.1;
+  font-weight: 950;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 25px #42d9ff33;
+}
+
+.welcome-brand p {
+  margin: 4px 0 0;
+  color: #aebbd3;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.welcome-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 10px;
+}
+
+.welcome-orbit {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.welcome-orbit span {
+  width: 43px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #42d9ff66;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #243967, #111b36);
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 900;
+  box-shadow: 0 7px 18px #00000033, 0 0 12px #42d9ff18;
+  animation: welcomeLetterFloat 2.5s ease-in-out infinite;
+}
+
+.welcome-orbit span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.welcome-orbit span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.welcome-orbit span:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.welcome-orbit span:nth-child(5) {
+  animation-delay: 0.48s;
+}
+
+.welcome-hero h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(25px, 5vw, 34px);
+  font-weight: 900;
+  letter-spacing: -0.7px;
+}
+
+.welcome-hero p {
+  max-width: 440px;
+  margin: 0;
+  color: #c0cbe0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.welcome-actions {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.welcome-play-button,
+.welcome-daily-button {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-play-button {
+  border: none;
+  color: #ffffff;
+  background: linear-gradient(110deg, #7554f7, #168dff);
+  box-shadow: 0 8px 25px #168dff44;
+}
+
+.welcome-play-button span {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.welcome-daily-button {
+  border: 1px solid #42d9ff88;
+  color: #e8faff;
+  background: #101d38aa;
+}
+
+.welcome-play-button:hover,
+.welcome-daily-button:hover {
+  transform: translateY(-3px);
+}
+
+.welcome-play-button:hover {
+  box-shadow: 0 12px 30px #168dff66;
+}
+
+.welcome-daily-button:hover {
+  background: #1b3155;
+}
+
+.welcome-play-button:active,
+.welcome-daily-button:active {
+  transform: scale(0.97);
+}
+
+.welcome-footer {
+  margin: 0;
+  color: #8998b5;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+}
+
+@keyframes welcomeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcomeLogoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes welcomeLetterFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* SMALL SCREENS */
+@media (max-width: 480px) {
+  .game-container.welcome-screen {
+    padding: 25px 18px;
+  }
+
+  .welcome-content {
+    gap: 24px;
+  }
+
+  .welcome-logo {
+    width: 88px;
+    height: 88px;
+  }
+
+  .welcome-orbit {
+    gap: 7px;
+  }
+
+  .welcome-orbit span {
+    width: 39px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .welcome-hero p {
+    font-size: 13px;
+  }
+
+  .welcome-actions {
+    max-width: 100%;
+  }
+}
+
+/* SHORT LANDSCAPE SCREENS */
+@media (max-height: 600px) and (orientation: landscape) {
+  .game-container.welcome-screen {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .welcome-content {
+    gap: 15px;
+  }
+
+  .welcome-logo {
+    width: 65px;
+    height: 65px;
+  }
+
+  .welcome-hero {
+    gap: 9px;
+  }
+
+  .welcome-orbit span {
+    width: 34px;
+    height: 36px;
+  }
+
+  .welcome-actions {
+    max-width: 300px;
+    gap: 8px;
+  }
+
+  .welcome-play-button,
+  .welcome-daily-button {
+    min-height: 45px;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .welcome-content,
+  .welcome-logo,
+  .welcome-orbit span {
+    animation: none;
+  }
+
+  .welcome-play-button,
+  .welcome-daily-button {
+    transition: none;
+  }
+}
+/* =====================================
+   CURTAIN PAGE TRANSITION
+===================================== */
+
+.curtain-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: linear-gradient(
+    135deg,
+    #080f22 0%,
+    #111d3b 55%,
+    #17152f 100%
+  );
+  box-shadow: 0 0 35px rgba(66, 217, 255, 0.18);
+}
+
+.curtain-panel-left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.curtain-panel-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+/* CLOSE CURTAINS */
+
+.curtain-transition.closing .curtain-panel-left {
+  animation: curtainCloseLeft 0.7s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+.curtain-transition.closing .curtain-panel-right {
+  animation: curtainCloseRight 0.7s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+/* OPEN CURTAINS */
+
+.curtain-transition.opening .curtain-panel-left {
+  animation: curtainOpenLeft 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.curtain-transition.opening .curtain-panel-right {
+  animation: curtainOpenRight 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+/* CENTRE GLOW */
+
+.curtain-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: linear-gradient(
+    transparent,
+    #42d9ff,
+    #a855f7,
+    #42d9ff,
+    transparent
+  );
+  box-shadow: 0 0 18px #42d9ff;
+  opacity: 0;
+}
+
+.curtain-transition.closing .curtain-seam {
+  animation: curtainSeamIn 0.7s ease forwards;
+}
+
+.curtain-transition.opening .curtain-seam {
+  animation: curtainSeamOut 0.55s ease forwards;
+}
+
+/* ANIMATION KEYFRAMES */
+
+@keyframes curtainCloseLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes curtainCloseRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes curtainOpenLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes curtainOpenRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes curtainSeamIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes curtainSeamOut {
+  from {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain-transition,
+  .curtain-transition * {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================
+   ABOUT THE GAME PAGE
+===================================== */
+
+.about-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.about-back-button {
+  display: block;
+  margin: 0 0 24px;
+  padding: 9px 14px;
+  color: #AFC4F5;
+  background: #172440;
+  border: 1px solid #34466F;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.about-eyebrow {
+  display: block;
+  color: #42D9FF;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 9px;
+}
+
+.about-heading h2 {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: clamp(26px, 4vw, 33px);
+}
+
+.about-heading p {
+  margin: 9px 0 0;
+  color: #9CAAC5;
+  font-size: 13px;
+}
+
+.about-section {
+  width: 100%;
+  padding: 19px;
+  background: #131F3A;
+  border: 1px solid #34466F;
+  border-radius: 15px;
+}
+
+.about-section h3 {
+  margin: 0 0 16px;
+  color: #42D9FF;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.about-game-intro {
+  text-align: center;
+}
+
+.about-game-icon {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 18px;
+}
+
+.about-game-intro h3 {
+  margin: 0 0 12px;
+  color: #FFFFFF;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.about-game-intro p {
+  margin: 10px 0;
+  color: #AAB9DA;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.about-info-card,
+.about-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 14px 0;
+  border-bottom: 1px solid #293957;
+}
+
+.about-info-card:last-child,
+.about-feature-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-info-card > span {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #7554F7, #168DFF);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.about-info-card strong,
+.about-feature-card strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.about-info-card p,
+.about-feature-card p {
+  margin: 5px 0 0;
+  color: #91A2C8;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.about-feature-card {
+  display: block;
+}
+
+.about-version-card {
+  padding: 22px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(117, 84, 247, 0.18),
+    rgba(22, 141, 255, 0.12)
+  );
+  border: 1px solid #34466F;
+  border-radius: 15px;
+}
+
+.about-version-card strong {
+  color: #FFFFFF;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.about-version-card p {
+  margin: 7px 0;
+  color: #AAB9DA;
+  font-size: 12px;
+}
+
+.about-version-card small {
+  color: #42D9FF;
+  font-size: 11px;
+}

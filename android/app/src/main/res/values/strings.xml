@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Brain Letters</string>
+    <string name="title_activity_main">Brain Letters</string>
+    <string name="package_name">com.brainletters.game</string>
+    <string name="custom_url_scheme">com.brainletters.game</string>
+</resources>

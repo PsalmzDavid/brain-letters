@@ -1,0 +1,290 @@
+
+:root {
+  font-family: Inter, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* =====================================
+   DAILY CHALLENGE SCREEN
+===================================== */
+
+.daily-challenge-screen {
+  animation: dailyScreenAppear 0.3s ease;
+}
+
+@keyframes dailyScreenAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.daily-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.daily-badge {
+  display: inline-block;
+  padding: 9px 17px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.daily-header h2 {
+  margin: 17px 0 8px;
+  font-size: clamp(23px, 4vw, 30px);
+}
+
+.daily-header p {
+  margin: 0;
+  color: #AAB9DA;
+  font-size: 13px;
+}
+
+.daily-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.daily-stat-card {
+  min-width: 0;
+  padding: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(145deg, #182747, #111B35);
+  border: 1px solid #34466F;
+  border-radius: 13px;
+}
+
+.daily-stat-card > span {
+  font-size: 23px;
+}
+
+.daily-stat-card strong {
+  color: #FFFFFF;
+  font-size: clamp(14px, 3vw, 19px);
+}
+
+.daily-stat-card small {
+  color: #91A2C8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-align: center;
+}
+
+.daily-progress {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.daily-completed-card {
+  width: 100%;
+  margin: 25px auto;
+  padding: 25px 15px;
+  text-align: center;
+  background: linear-gradient(145deg, #182747, #111B35);
+  border: 1px solid #36CFA0;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(54, 207, 160, 0.12);
+}
+
+.daily-completed-icon {
+  font-size: 42px;
+}
+
+.daily-completed-card h3 {
+  margin: 12px 0 8px;
+  font-size: 21px;
+}
+
+.daily-completed-card p {
+  color: #AAB9DA;
+  font-size: 13px;
+}
+
+.daily-completed-card strong {
+  display: block;
+  margin: 15px 0;
+  color: #FFD76A;
+  font-size: 24px;
+}
+
+.daily-completed-card > span {
+  display: block;
+  color: #36CFA0;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.daily-home-button {
+  display: block;
+  margin: 25px auto;
+  padding: 12px 22px;
+  color: #FFFFFF;
+  background: #172343;
+  border: 1px solid #34466F;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.daily-home-button:hover {
+  background: #26365F;
+  border-color: #42D9FF;
+  transform: translateY(-2px);
+}
+
+.daily-wheel-layout {
+  margin-top: 20px;
+}
+
+.daily-challenge-screen .letter-wheel {
+  touch-action: none;
+}
+
+@media (max-width: 480px) {
+  .daily-stats {
+    gap: 7px;
+  }
+
+  .daily-stat-card {
+    padding: 12px 3px;
+  }
+
+  .daily-stat-card > span {
+    font-size: 20px;
+  }
+
+  .daily-stat-card small {
+    font-size: 8px;
+  }
+
+  .daily-header p {
+    font-size: 12px;
+  }
+}
+
+/* =====================================
+   DAILY WORD PUZZLE
+===================================== */
+
+.daily-word-number {
+  width: fit-content;
+  margin: 20px auto 12px;
+  padding: 8px 18px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #286BCE, #7545D9);
+  border: 1px solid #42D9FF;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.daily-clue-card {
+  width: min(100%, 520px);
+  margin: 0 auto 22px;
+  padding: 20px;
+  background: linear-gradient(145deg, #182747, #111B35);
+  border: 1px solid #34466F;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.daily-clue-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #42D9FF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.daily-clue-card p {
+  margin: 0;
+  color: #F5F7FF;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.daily-answer-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  min-height: 55px;
+  margin: 20px auto 25px;
+}
+
+.daily-answer-row .puzzle-cell {
+  width: 42px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.daily-challenge-screen .daily-wheel-layout {
+  margin-top: 20px;
+}
+
+.daily-challenge-screen .letter-wheel {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 480px) {
+  .daily-clue-card {
+    padding: 16px;
+  }
+
+  .daily-clue-card p {
+    font-size: 13px;
+  }
+
+  .daily-answer-row {
+    gap: 5px;
+  }
+
+  .daily-answer-row .puzzle-cell {
+    width: 36px;
+    height: 43px;
+    font-size: 17px;
+  }
+}
